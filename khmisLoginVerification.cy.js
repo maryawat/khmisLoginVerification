@@ -4,7 +4,7 @@ const loginPageUrl = 'https://qa.kenyahmis.org/openmrs/spa/login';
 
 describe('Kenya EMR Login', () => {
   beforeEach(() => {
-  it('should verify successful login', () => {
+  it('should verify successful login ', () => {
 
     // Navigate to the login page before each test 
     cy.visit(loginPageUrl);
@@ -18,10 +18,9 @@ describe('Kenya EMR Login', () => {
     // Check for specific element on the landing page
     // This element shoud be present only if the login is successful
     cy.contains('Total Visits Today').should('be.visible'),{ timeout: 400000 }   
-  })
-})
+  });
 
-describe('Login Error Handling for invalid Password', () => {
+
   it('should show an error message for invalid password', () => {
     // Visit the login page
     cy.visit(loginPageUrl);
@@ -34,11 +33,10 @@ describe('Login Error Handling for invalid Password', () => {
 
     // Verify error message is displayed with a custom timeout
     cy.contains('Invalid username or password', { timeout: 60000 }).should('be.visible');
-  })
-})
+  });
 
-describe('Login Error Handling for invalid Username', () => {
-  it('should show an error message for invalid Username', () => {
+
+  it('should return an error message for invalid Username', () => {
     
     cy.visit(loginPageUrl); // Visit the login page
 
@@ -49,11 +47,10 @@ describe('Login Error Handling for invalid Username', () => {
 
     // Verify error message is displayed with a custom timeout
     cy.contains('Invalid username or password', { timeout: 60000 }).should('be.visible');
-  })
+  });
 
-})
 
-describe('Login Error Handling for both invalid Username and password', () => {
+
   it('should show an error message for both invalid Username and password', () => {
     
     cy.visit(loginPageUrl); // Visit the login page
@@ -65,13 +62,12 @@ describe('Login Error Handling for both invalid Username and password', () => {
 
     // Verify error message is displayed with a custom timeout
     cy.contains('Invalid username or password', { timeout: 60000 }).should('be.visible');
-  })
-})
+  });
 
-  describe('Login Error Handling for username with alphanumeric(special) characters', () => {
-    it('should show an error message', () => {
-      // Visit the login page
-      cy.visit(loginPageUrl);
+
+    it('should display an error message if username contains special characters', () => {
+      
+      cy.visit(loginPageUrl); // Visit the login page
   
       cy.get('#username').type('admin##'); // Enter username with special characters
       cy.contains('Continue').click(); // Click the "Continue" button (ensure this triggers the password field)
@@ -80,9 +76,8 @@ describe('Login Error Handling for both invalid Username and password', () => {
   
       // Verify error message is displayed with a custom timeout
       cy.contains('Invalid username or password', { timeout: 60000 }).should('be.visible');
-    });
+    })
+
 
 });
-
 });
-
