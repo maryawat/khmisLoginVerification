@@ -70,7 +70,7 @@ describe('Kenya EMR Login', () => {
     cy.contains('Invalid username or password', { timeout: 60000 }).should('be.visible');
   });
   
-it('should show a pop-up message when the username field is empty and disappear when filled',() => {
+it('should show a pop-up message when the username field is left empty and disappear when filled',() => {
 
     cy.visit(loginPageUrl); // Visit the login page
 
@@ -81,7 +81,7 @@ it('should show a pop-up message when the username field is empty and disappear 
       expect(txt).to.contains('Please fill out this field');
 
   });
-it('should show a pop-up message when the password field is empty and disappear when filled',() => {
+it('should show a pop-up message when the password field is left empty and disappear when filled',() => {
 
     cy.visit(loginPageUrl); // Visit the login page
 
