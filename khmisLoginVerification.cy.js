@@ -81,6 +81,7 @@ it('should show a pop-up message when the username field is left empty and disap
       expect(txt).to.contains('Please fill out this field');
 
   });
+});
 it('should show a pop-up message when the password field is left empty and disappear when filled',() => {
 
     cy.visit(loginPageUrl); // Visit the login page
@@ -98,5 +99,6 @@ it('should show a pop-up message when the password field is left empty and disap
   });
   
 })
+
 })
-})
+
