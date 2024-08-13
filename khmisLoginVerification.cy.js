@@ -69,5 +69,33 @@ describe('Kenya EMR Login', () => {
     // Verify error message is displayed with a custom timeout
     cy.contains('Invalid username or password', { timeout: 60000 }).should('be.visible');
   });
+  
+it('should show a pop-up message when the username field is empty and disappear when filled',() => {
 
-});
+    cy.visit(loginPageUrl); // Visit the login page
+
+    cy.contains('Continue').click(); 
+
+    // Check for the presence of the error message using text or broader selectors
+    cy.on('window:alert',(txt)=>{
+      expect(txt).to.contains('Please fill out this field');
+
+  });
+it('should show a pop-up message when the password field is empty and disappear when filled',() => {
+
+    cy.visit(loginPageUrl); // Visit the login page
+
+
+    cy.get('#username').type('admin');
+    cy.contains('Continue').click();
+    //leave password field blank and click Login
+    cy.get('button[type="submit"]').click(); 
+
+
+    // Check for the presence of the error message using text or broader selectors
+    cy.on('window:alert',(txt)=>{
+      expect(txt).to.contains('Please fill out this field');
+  });
+  
+})
+})
